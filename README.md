@@ -24,4 +24,6 @@ In addition to the in-game help guide, below is some useful information:
     - The maximum interpolation range defines the maximum length of connections between points
     - If desired, you can load in new gradients by changing the gradient file name to your own file (must be imported separately)
 
+- Terrain GameObject and Build Terrain Script
+    - Activate the build terrain script only if you have another file you want to build terrain from. Make sure to update the csv name accordingly.
 ## Additional Features
