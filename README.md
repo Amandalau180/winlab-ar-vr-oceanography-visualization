@@ -26,4 +26,12 @@ In addition to the in-game help guide, below is some useful information:
 
 - Terrain GameObject and Build Terrain Script
     - Activate the build terrain script only if you have another file you want to build terrain from. Make sure to update the csv name accordingly.
+
+- OVRCameraRig GameObject and VR Fly Controller Script
+    - Here you can edit the default speed values
+
+- PathFollower GameObject and Path Follower Script
+    - Here you can edit the default speed values
+
+
 ## Additional Features
