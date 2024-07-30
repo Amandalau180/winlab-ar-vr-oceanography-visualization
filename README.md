@@ -21,7 +21,7 @@ In addition to the in-game help guide, below is some useful information:
         - Default is 5
     - If you change the pre-loaded terrain for worldmap, the map width, length, and height fields must be updated accordingly
     - Checkbox to download new data or use previously downloaded data
-    - The maximum interpolation range deefines the maximum length of connections between points
+    - The maximum interpolation range defines the maximum length of connections between points
     - If desired, you can load in new gradients by changing the gradient file name to your own file (must be imported separately)
 
 ## Additional Features
