@@ -53,7 +53,7 @@ When you're ready to make this README your own, just edit this file and use the 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Name
-Uses version 2022.3.31f1
+Uses version 2022.3.31f1  
 Requires Meta Quest 3 and Meta XR All-in-One SDK found [here](https://assetstore.unity.com/packages/tools/integration/meta-xr-all-in-one-sdk-269657)
 
 ## Description
