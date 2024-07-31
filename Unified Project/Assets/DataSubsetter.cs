@@ -118,6 +118,8 @@ public class DataSubsetter : MonoBehaviour
             return;
         }
 
+        secondaryDisplay.text = "No point selected";
+
         float triggerValue = OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger);
 
         //Anything under half-press shoots a guide laser but will not select points
@@ -128,7 +130,12 @@ public class DataSubsetter : MonoBehaviour
             guideLine.SetPosition(0, rightHandAnchor.position);
             guideLine.SetPosition(1, rightHandAnchor.position + rightHandAnchor.forward * 10.0f);
         }
-        else if (triggerValue >= .5f)
+        else
+        {
+            guideLine.enabled = false;
+        }
+
+        if (triggerValue >= .5f)
         {
             RaycastHit hit;
             if (Physics.Raycast(rightHandAnchor.position, rightHandAnchor.forward, out hit))
@@ -140,10 +147,6 @@ public class DataSubsetter : MonoBehaviour
                     selectedPoints.Add(index);
                 }
             }
-        }
-        else
-        {
-            guideLine.enabled = false;
         }
 
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
