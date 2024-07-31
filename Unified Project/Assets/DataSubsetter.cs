@@ -128,20 +128,22 @@ public class DataSubsetter : MonoBehaviour
             guideLine.SetPosition(0, rightHandAnchor.position);
             guideLine.SetPosition(1, rightHandAnchor.position + rightHandAnchor.forward * 10.0f);
         }
+        else if (triggerValue >= .5f)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(rightHandAnchor.position, rightHandAnchor.forward, out hit))
+            {
+                int index = points.IndexOf(hit.collider.gameObject);
+                secondaryDisplay.text = $"Selected point: {index}";
+                if (!selectedPoints.Contains(index) && index != -1)
+                {
+                    selectedPoints.Add(index);
+                }
+            }
+        }
         else
         {
             guideLine.enabled = false;
-        }
-
-        RaycastHit hit;
-        if (Physics.Raycast(rightHandAnchor.position, rightHandAnchor.forward, out hit))
-        {
-            int index = points.IndexOf(hit.collider.gameObject);
-            secondaryDisplay.text = $"Selected point: {index}";
-            if (!selectedPoints.Contains(index) && index != -1)
-            {
-                selectedPoints.Add(index);
-            }
         }
 
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
