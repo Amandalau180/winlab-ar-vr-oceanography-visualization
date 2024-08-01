@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -30,7 +31,15 @@ public class MinimapInfoDisplay : MonoBehaviour
     {
         if (plot2Script.currDisplay != null)
         {
-            infoText.text = "Now Displaying: \n" + plot2Script.currDisplay + "\n" + pathVals[plot2Script.currDisplay][pathFollowerScript.getCurrentPointIndex()] + " " + units[plot2Script.currDisplay];
+            if (plot2Script.currDisplay == "time")
+            {
+                DateTime tempTime = new DateTime((long)pathVals[plot2Script.currDisplay][pathFollowerScript.getCurrentPointIndex()]);
+                infoText.text = "Now Displaying: \n" + plot2Script.currDisplay + "\n" + tempTime + " " + units[plot2Script.currDisplay];
+            }
+            else
+            {
+                infoText.text = "Now Displaying: \n" + plot2Script.currDisplay + "\n" + pathVals[plot2Script.currDisplay][pathFollowerScript.getCurrentPointIndex()] + " " + units[plot2Script.currDisplay];
+            }
         }
     }
 }

@@ -156,6 +156,7 @@ public class DataSubsetter : MonoBehaviour
                     isSaving.text = "";
                 }
             }
+            isSaving.text = "";
         }
         else
         {

@@ -444,7 +444,7 @@ public class Plot2 : MonoBehaviour
     //This method allows the user to toggle the variable being displayed
     public void toggleColoring()
     {
-        if (colCounter + 1> varsDict.Count)
+        if (colCounter + 1 > varsDict.Count)
         {
             colCounter = 0;
         }
