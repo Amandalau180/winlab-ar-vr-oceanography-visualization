@@ -10,7 +10,9 @@ public class DataSubsetter : MonoBehaviour
 {
     public GameObject plotter;
     public TMP_Text secondaryDisplay;
+    public TMP_Text isSaving;
 
+    private Plot2 plot2Script;
     private string fileName;
     private Dictionary<string, List<float>> varsValDict = new Dictionary<string, List<float>>();
     private Dictionary<string, string> varsUnitDict = new Dictionary<string, string>();
@@ -26,7 +28,7 @@ public class DataSubsetter : MonoBehaviour
     //Method to get data from the plot2 script
     void attemptToGetData()
     {
-        Plot2 plot2Script = plotter.GetComponent<Plot2>();
+        plot2Script = plotter.GetComponent<Plot2>();
 
         varsValDict = plot2Script.getValues();
         varsUnitDict = plot2Script.getUnits();
@@ -126,28 +128,42 @@ public class DataSubsetter : MonoBehaviour
         //Anything over half-press will select points hit by the guide laser
         if (triggerValue > 0.1f)
         {
+            RaycastHit hit;
             guideLine.enabled = true;
             guideLine.SetPosition(0, rightHandAnchor.position);
             guideLine.SetPosition(1, rightHandAnchor.position + rightHandAnchor.forward * 10.0f);
+            if (Physics.Raycast(rightHandAnchor.position, rightHandAnchor.forward, out hit))
+            {
+                int index = points.IndexOf(hit.collider.gameObject);
+                if (plot2Script.currDisplay == "time")
+                {
+                    DateTime tempTime = new DateTime((long)varsValDict[plot2Script.currDisplay][index]);
+                    secondaryDisplay.text = $"Looking at point: {index}" + "\nValue at point: " + tempTime + " " + varsUnitDict[plot2Script.currDisplay];
+                }
+                else
+                {
+                    secondaryDisplay.text = $"Looking at point: {index}" + "\nValue at point: " + varsValDict[plot2Script.currDisplay][index] + " " + varsUnitDict[plot2Script.currDisplay];
+                }
+                if (triggerValue >= .5f)
+                {
+                    if (!selectedPoints.Contains(index) && index != -1)
+                    {
+                        selectedPoints.Add(index);
+                        isSaving.text = "Saving point";
+                    }
+                } else
+                {
+                    isSaving.text = "";
+                }
+            }
         }
         else
         {
             guideLine.enabled = false;
+            isSaving.text = "";
         }
 
-        if (triggerValue >= .5f)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(rightHandAnchor.position, rightHandAnchor.forward, out hit))
-            {
-                int index = points.IndexOf(hit.collider.gameObject);
-                secondaryDisplay.text = $"Selected point: {index}";
-                if (!selectedPoints.Contains(index) && index != -1)
-                {
-                    selectedPoints.Add(index);
-                }
-            }
-        }
+        
 
         if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
         {

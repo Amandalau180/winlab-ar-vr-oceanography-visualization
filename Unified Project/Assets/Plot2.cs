@@ -444,7 +444,7 @@ public class Plot2 : MonoBehaviour
     //This method allows the user to toggle the variable being displayed
     public void toggleColoring()
     {
-        if (colCounter + 1 > varsDict.Count)
+        if (colCounter + 1> varsDict.Count)
         {
             colCounter = 0;
         }
@@ -493,7 +493,7 @@ public class Plot2 : MonoBehaviour
             {
                 Renderer rend = go.GetComponent<MeshRenderer>();
                 Material mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));
-                mat.color = currGradient.Evaluate(varsDict[varsIntStringDict[colCounter]][index]);
+                mat.color = currGradient.Evaluate((float)varsDict[varsIntStringDict[colCounter]][index]);
                 rend.material = mat;
                 index++;
             }
@@ -504,7 +504,7 @@ public class Plot2 : MonoBehaviour
                 cylRend.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
                 if (cylRend.material.color.a != 0)
                 {
-                    cylRend.material.color = currGradient.Evaluate(varsDict[varsIntStringDict[colCounter]][index]);
+                    cylRend.material.color = currGradient.Evaluate((float)varsDict[varsIntStringDict[colCounter]][index]);
                 }
                 index++;
             }
