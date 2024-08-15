@@ -544,6 +544,22 @@ public class Plot2 : MonoBehaviour
         return latLongDepthDict;
     }
 
+    public Vector3 getCenter()
+    {
+        float minLong = latlongdepthMinmaxDict["longitude"][0];
+        float maxLong = latlongdepthMinmaxDict["longitude"][1];
+        float minLat = latlongdepthMinmaxDict["latitude"][0];
+        float maxLat = latlongdepthMinmaxDict["latitude"][1];
+
+        float centLong = (minLong + maxLong) / 2;
+        float centLat = (minLat + maxLat) / 2;
+
+
+        Vector3 center = new Vector3(centLong / 180 * (mapWidth / 2), 25, centLat / 90 * (mapLength / 2));
+
+        return center;
+    }
+
 
     // Start is called before the  frame update
     void Start()
